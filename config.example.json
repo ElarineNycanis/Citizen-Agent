@@ -1,0 +1,211 @@
+{
+  "models": {
+    "main": {
+      "base_url": "https://api.deepseek.com",
+      "model": "deepseek-chat",
+      "api_key": "在此填入你的 API Key"
+    },
+    "vision": {
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "model": "qwen-vl-plus",
+      "api_key": "在此填入你的 API Key"
+    },
+    "image_gen": {
+      "base_url": "https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis",
+      "model": "wanx2.1-t2i-turbo",
+      "api_key": "在此填入你的 API Key"
+    }
+  },
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "run_command",
+        "description": "Execute a command in terminal and return stdout. Supports curl, ping, nslookup, and other network diagnostic tools.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "description": "The full command to execute, e.g. 'curl -sL https://example.com'"
+            }
+          },
+          "required": [
+            "command"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "open_image",
+        "description": "Open an image file with the system default image viewer.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Full path to the image file"
+            }
+          },
+          "required": [
+            "path"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "play_music",
+        "description": "Play a local audio file using the system default player. Supports mp3, wav, flac, ogg, aac, etc.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Full absolute path to the audio file"
+            }
+          },
+          "required": [
+            "path"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "parallel_execute",
+        "description": "Execute multiple independent sub-tasks in parallel. Use this when the user requests multiple unrelated tasks simultaneously. Each sub-task gets full conversation context and independent tool calling ability. Max 5 parallel tasks.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "tasks": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of task descriptions to execute in parallel"
+            }
+          },
+          "required": [
+            "tasks"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "generate_image",
+        "description": "【USE THIS TOOL】 Generate an image using AI (Wanx/通义万相). You MUST call this tool when the user asks you to create, draw, generate any image, picture, illustration, poster, background, or visual content. Do NOT output SVG, HTML, ASCII art, or code — call this tool instead. The image will be saved to disk automatically.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "prompt": {
+              "type": "string",
+              "description": "Image description prompt. The more detailed, the better. Supports both Chinese and English."
+            },
+            "save_path": {
+              "type": "string",
+              "description": "Path to save the generated image, e.g. C:\\Users\\admin\\Desktop\\cat.png. If not specified, auto-generates a filename on the Desktop."
+            }
+          },
+          "required": [
+            "prompt"
+          ]
+        }
+      }
+    }
+  ],
+  "allowed_commands": [
+    "curl",
+    "ping",
+    "ifconfig",
+    "nslookup",
+    "dig",
+    "ip",
+    "wget",
+    "cat",
+    "head",
+    "tail",
+    "grep",
+    "ls",
+    "date",
+    "whoami",
+    "df",
+    "du",
+    "python",
+    "mkdir",
+    "echo",
+    "powershell",
+    "powershell.exe",
+    "type",
+    "dir",
+    "cmd"
+  ],
+  "dangerous_keywords": [
+    "-X",
+    "-d ",
+    "--data",
+    "-T ",
+    "--upload-file",
+    "-F ",
+    "-O",
+    "--output-document",
+    "rm",
+    "sudo",
+    ">",
+    "|",
+    "&&",
+    "sh",
+    "bash",
+    "chmod",
+    "/etc/",
+    "shadow",
+    ".ssh"
+  ],
+  "max_tool_output": 20480,
+  "max_retries": 5,
+  "retry_delay": 1,
+  "connection_timeout": 10,
+  "read_timeout": 120,
+  "safe_command_mode": false,
+  "image_gen_timeout": 120,
+  "command_preview_length": 200,
+  "ai_name": "MyAI",
+  "show_tool_calls": "compact",
+  "parallel_enabled": true,
+  "parallel_max_workers": 5,
+  "parallel_max_rounds": 30,
+  "parallel_agent_prompt": "## IDENTITY\n\nYou are Sub-Agent #{index} of ${total} in the Citizen Agent parallel execution system. You are an autonomous execution unit spawned to independently complete a specific sub-task. You MUST call tools to accomplish your task. Text-only responses without tool calls = FAILURE. Never give up. Verify everything.\n\n## OUTPUT LANGUAGE\n\nYour final response to the user MUST be in Chinese (中文).",
+  "parallel_no_tools_msg": "No tools called - the model may not support function calling or the task description was unclear",
+  "colors": {
+    "pink": "95",
+    "green": "92",
+    "yellow": "93",
+    "dark_gray": "90",
+    "dark_yellow": "38;2;170;165;120",
+    "cyan": "38;2;100;255;220",
+    "red": "91",
+    "dark_red": "38;2;255;80;80",
+    "reply_ai": "38;2;255;255;255",
+    "white": "0",
+    "agent_1": "38;2;255;170;200",
+    "agent_2": "38;2;255;200;100",
+    "agent_3": "38;2;150;255;150",
+    "agent_4": "38;2;255;150;200",
+    "agent_5": "38;2;150;180;255"
+  },
+  "error_codes": {
+    "1": "Unsupported protocol",
+    "6": "DNS resolution failed",
+    "7": "Connection refused",
+    "28": "Timeout",
+    "127": "Command not found",
+    "timeout": "Command execution timeout",
+    "141": "Broken pipe"
+  }
+}

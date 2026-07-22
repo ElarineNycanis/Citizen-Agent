@@ -27,6 +27,8 @@ pip install requests
 ```
 
 可选：`pip install prompt_toolkit`（更好看的输入框）
+手机Termux安装指令
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Elarcanine/CitizenAgent/main/install.sh)"
 
 ### 配置
 

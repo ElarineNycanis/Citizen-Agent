@@ -31,7 +31,7 @@ pip install requests
 
 手机Termux安装指令
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Elarcanine/CitizenAgent/main/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ElarineNycanis/Citizen-Agent/main/install.sh)"
 ```
 
 ### 配置
@@ -164,6 +164,13 @@ pip install requests
 
 Optional: `pip install prompt_toolkit`
 
+
+Termux installation commands for mobile devices
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ElarineNycanis/Citizen-Agent/main/install.sh)"
+```
+
+
 ### Configure
 
 1. Get a [DeepSeek API Key](https://platform.deepseek.com)
@@ -244,6 +251,7 @@ pip install requests
 ```
 
 Optionnel : `pip install prompt_toolkit`
+
 
 ### Configuration
 
@@ -326,6 +334,11 @@ pip install requests
 
 Опционально: `pip install prompt_toolkit`
 
+
+Команда для установки Termux на телефоне
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ElarineNycanis/Citizen-Agent/main/install.sh)"
+```
 ### Настройка
 
 1. Получите [API-ключ DeepSeek](https://platform.deepseek.com)

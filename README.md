@@ -30,7 +30,8 @@ pip install requests
 
 
 手机Termux安装指令
-```bash -c "$(curl -fsSL https://raw.githubusercontent.com/Elarcanine/CitizenAgent/main/install.sh)"
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Elarcanine/CitizenAgent/main/install.sh)"
 ```
 
 ### 配置
